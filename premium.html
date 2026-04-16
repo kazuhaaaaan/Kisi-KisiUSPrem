@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Access | KazuDev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { transition: background-color 0.5s ease, color 0.5s ease; }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .reveal-anim {
+            animation: reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        
+        /* Animasi khusus untuk Popup Gambar */
+        .popup-anim {
+            animation: popupReveal 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+        @keyframes popupReveal {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+        
+        .hidden-content { display: none !important; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen selection:bg-blue-500/30">
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">K</div>
+            <span class="font-bold tracking-tight">Kazu<span class="text-blue-600">Premium</span></span>
+        </div>
+        <button id="themeToggle" class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:scale-110 active:rotate-12">
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+            <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-600"></i>
+        </button>
+    </nav>
+
+    <main class="max-w-2xl mx-auto px-6 pt-32 pb-20">
+        
+        <section id="paywall-card" class="reveal-anim">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-extrabold tracking-tight mb-3">Akses Kisi-Kisi Eksklusif</h2>
+                <p class="text-slate-500 dark:text-slate-400">Materi ini diproteksi. Masukkan kode unik lu untuk membuka.</p>
+            </div>
+
+            <div class="glass p-8 rounded-[2.5rem] shadow-2xl shadow-blue-500/10 border border-blue-100 dark:border-blue-900/20 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10 space-y-5">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 ml-1">Identity</label>
+                        <div class="relative mt-1">
+                            <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+                            <input type="text" id="user-name" placeholder="Nama Lengkap Sesuai Absen" 
+                                class="w-full pl-12 pr-5 py-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-slate-800 transition-all font-medium">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 ml-1">Serial Key</label>
+                        <div class="relative mt-1">
+                            <i data-lucide="key" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+                            <input type="text" id="user-password" placeholder="KZU-XXXX-XXXX" 
+                                class="w-full pl-12 pr-5 py-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-slate-800 transition-all font-mono">
+                        </div>
+                    </div>
+
+                    <button onclick="handleUnlock()" class="group relative w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-all hover:shadow-xl hover:shadow-blue-500/30 active:scale-[0.98] overflow-hidden">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            Buka Sekarang <i data-lucide="lock-open" class="w-4 h-4 transition-transform group-hover:rotate-12"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[gradient_1.5s_infinite]"></div>
+                    </button>
+
+                    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col items-center gap-4">
+                        <p class="text-[11px] text-slate-400 font-medium text-center">Belum dapet kode? Klik tombol di bawah ini:</p>
+                        <div class="flex gap-4">
+                            <button onclick="toggleModal('modal-qris', true)" class="flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                                <i data-lucide="qr-code" class="w-4 h-4"></i> Bayar QRIS
+                            </button>
+                            <button onclick="requestKey()" class="flex items-center gap-2 text-xs font-bold text-green-600 hover:text-green-500 transition-colors">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i> Minta Kode
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="premium-section" class="hidden-content reveal-anim">
+            <div class="glass p-8 rounded-[2.5rem] border border-green-500/50 shadow-2xl shadow-green-500/5 relative overflow-hidden">
+                
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-green-500/20 text-green-500 rounded-2xl flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 id="welcome-user" class="text-xl font-bold">Halo, Nouva!</h3>
+                        <p class="text-xs text-slate-500">Materi premium berhasil dibuka.</p>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-2xl overflow-hidden mb-8 border border-slate-200 dark:border-slate-800 cursor-pointer shadow-lg hover:shadow-blue-500/20 transition-all duration-500"
+                     onclick="openImagePopup()">
+                    <img id="material-img" src="./pdf/KisiPakIci.jpeg" 
+                         alt="Server Room" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+                        <div class="flex items-center gap-3 text-white">
+                            <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
+                                <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-sm font-semibold tracking-wide">Lihat Ukuran Penuh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800 relative">
+                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-2xl"></div>
+                        
+                        <h4 class="font-bold text-sm mb-3 flex items-center gap-2 text-blue-600 relative z-10">
+                            <i data-lucide="list" class="w-4 h-4"></i> Kisi-Kisi Utama
+                        </h4>
+                        <ul class="text-sm space-y-2 text-slate-600 dark:text-slate-400 relative z-10 font-medium">
+                            <li>• Coming Soon</li>
+                            <li>• Coming Soon</li>
+                            <li>• Coming Soon</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="" download class="flex items-center justify-center gap-2 py-4 bg-slate-900 dark:bg-white dark:text-slate-900 text-white rounded-2xl font-bold hover:shadow-xl transition-all active:scale-95 duration-300">
+                            <i data-lucide="download" class="w-5 h-5"></i> Download PDF
+                        </a>
+                        <a href="https://gemini.google.com/share/xxxx" target="_blank" class="flex items-center justify-center gap-2 py-4 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl font-bold hover:bg-blue-200 transition-all active:scale-95 duration-300">
+                            <i data-lucide="external-link" class="w-5 h-5"></i> Latihan Soal
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-qris" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-slate-950/90 backdrop-blur-md">
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-[3rem] max-w-sm w-full text-center relative reveal-anim shadow-2xl shadow-blue-500/10 border border-slate-200 dark:border-slate-800">
+            <button onclick="toggleModal('modal-qris', false)" class="absolute top-6 right-6 text-slate-400 hover:text-red-500 transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <h3 class="font-extrabold text-2xl mb-2">QRIS KazuDev</h3>
+            <p class="text-xs text-slate-500 mb-6 font-medium">Scan & bayar min Rp 15.000</p>
+            <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-3xl mb-6 border border-dashed border-slate-300 dark:border-slate-700">
+                <img src="./pdf/Qris.jpeg" alt="QRIS" class="w-full h-auto rounded-xl shadow-inner">
+            </div>
+            <button onclick="requestKey()" class="w-full py-4 bg-green-500 text-white rounded-2xl font-bold shadow-lg shadow-green-500/20 active:scale-95 transition-all">Sudah Bayar? Chat Admin</button>
+        </div>
+    </div>
+
+    <div id="modal-image-popup" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-sm transition-opacity duration-300"
+         onclick="closeImagePopup()">
+        <button class="absolute top-6 right-6 z-[120] p-3 rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white transition-all">
+            <i data-lucide="x" class="w-7 h-7"></i>
+        </button>
+        
+        <div class="relative max-w-7xl max-h-[90vh] popup-anim" onclick="event.stopPropagation()"> <img id="popup-img-source" src="" alt="Premium Material" 
+                 class="w-full h-auto max-h-[90vh] rounded-2xl shadow-2xl border-4 border-white dark:border-slate-800">
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Load Theme Preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        // --- DYNAMIC SECURITY LOGIC (Admin Key: F12 -> Console) ---
+        const SALT = "KAZU_SECRET_2026"; // Ganti ini untuk mengubah semua kode unik masal
+
+        function generateUniqueKey(name) {
+            let normalized = name.trim().toUpperCase().replace(/\s/g, '');
+            let hash = 0;
+            let combined = normalized + SALT;
+            for (let i = 0; i < combined.length; i++) {
+                hash = ((hash << 5) - hash) + combined.charCodeAt(i);
+                hash |= 0;
+            }
+            return "KZU-" + Math.abs(hash).toString(16).toUpperCase().substring(0, 8);
+        }
+
+        function handleUnlock() {
+            const name = document.getElementById('user-name').value;
+            const keyInput = document.getElementById('user-password').value;
+            
+            if (!name || !keyInput) {
+                alert("Isi nama ama kodenya dulu bro!");
+                return;
+            }
+
+            const validKey = generateUniqueKey(name);
+
+            if (keyInput.trim().toUpperCase() === validKey) {
+                // Success Transition (Smooth)
+                document.getElementById('paywall-card').classList.add('hidden-content');
+                document.getElementById('premium-section').classList.remove('hidden-content');
+                document.getElementById('welcome-user').innerText = `Halo, ${name}!`;
+            } else {
+                alert("Kode salah bro! Coba chat admin.");
+                console.log("%c[ADMIN] Kode untuk " + name + ": " + validKey, "color: #3b82f6; font-weight: bold; font-size: 14px;");
+            }
+        }
+
+        function requestKey() {
+            const name = document.getElementById('user-name').value || "User";
+            const text = `Halo Admin KazuDev, saya ${name}. Saya sudah bayar via QRIS, mau minta kode akses Premium ya!`;
+            window.open(`https://wa.me/6285163725110?text=${encodeURIComponent(text)}`);
+        }
+
+        function toggleModal(id, show) {
+            const modal = document.getElementById(id);
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+        
+        // --- IMAGE POPUP LOGIC ---
+        const imagePopupModal = document.getElementById('modal-image-popup');
+        const popupImageSource = document.getElementById('popup-img-source');
+        const originalImageSource = document.getElementById('material-img');
+
+        function openImagePopup() {
+            // Ambil URL gambar asli dan pasang di popup
+            popupImageSource.src = originalImageSource.src;
+            
+            // Tampilkan modal
+            imagePopupModal.classList.remove('hidden');
+            imagePopupModal.classList.add('flex');
+            
+            // Matikan scroll body agar tidak mengganggu
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImagePopup() {
+            // Sembunyikan modal
+            imagePopupModal.classList.add('hidden');
+            imagePopupModal.classList.remove('flex');
+            
+            // Aktifkan kembali scroll body
+            document.body.style.overflow = '';
+        }
+        
+        // Support tekan tombol 'ESC' untuk menutup popup gambar
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !imagePopupModal.classList.contains('hidden')) {
+                closeImagePopup();
+            }
+        });
+
+    </script>
+</body>
+</html> 

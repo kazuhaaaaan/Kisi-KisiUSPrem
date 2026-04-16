@@ -1,0 +1,197 @@
+1. Operator perbandingan untuk 'lebih kecil atau sama dengan' adalah...
+
+Jawaban Anda: C. <=
+
+2. Perhatikan potongan kode: for i in range(3): print("Halo"). Berapa kali kata 'Halo' akan muncul di layar?
+
+Jawaban Anda: C. 3 kali
+
+3. Manakah yang merupakan contoh prompt AI yang 'Specific'?
+
+Jawaban Anda: B. 'Buatlah kode Python untuk menghitung diskon belanja 10%.'
+
+4. Manakah penulisan variabel yang benar di Python?
+
+Jawaban Anda: D. nilai_siswa = 90
+
+5. Di bawah ini yang merupakan instruksi untuk menampilkan data ke layar pada Python adalah...
+
+Jawaban Anda: B. print()
+
+6. Keyword yang digunakan untuk keluar dari perulangan secara paksa adalah...
+
+Jawaban Anda: C. Break
+
+7. Manakah dari operator berikut yang digunakan untuk menghitung hasil bagi (pembulatan ke bawah) di Python?
+
+Jawaban Anda: B. %
+
+Kunci Jawaban: D. //
+
+8. Apa output dari print(not True)?
+
+Jawaban Anda: B. False
+
+9. Software yang dibutuhkan untuk menjalankan script Python di komputer secara minimal adalah...
+
+Jawaban Anda: B. Python Interpreter
+
+10. Dalam prompting, memberikan batasan waktu atau deadline hasil termasuk dalam unsur...
+
+Jawaban Anda: E. Time-bound
+
+11. Jika input adalah '123', maka type(input()) akan menghasilkan...
+
+Jawaban Anda: E. Error
+
+Kunci Jawaban: C.
+
+12. Apa yang akan terjadi jika kita menjalankan kode print(10 + "5") di Python?
+
+Jawaban Anda: D. Muncul angka 10 sebanyak 5 kali
+
+Kunci Jawaban: C. Terjadi TypeError (Error karena tipe data berbeda)
+
+13. Dalam pembuatan flowchart, simbol 'Oval' atau 'Capsule' digunakan untuk menunjukkan...
+
+Kunci Jawaban: C. Titik awal (Start) atau akhir (End) program
+
+14. Tipe data yang hanya memiliki dua nilai, yaitu True atau False, disebut...
+
+Jawaban Anda: C. Boolean
+
+15. Jika Anda menginput huruf 'A' ke dalam fungsi int(input()), apa yang akan terjadi?
+
+Kunci Jawaban: C. Program mengalami ValueError
+
+16. Untuk mengubah string "25" menjadi integer agar bisa dihitung secara matematis, fungsi yang digunakan adalah...
+
+Jawaban Anda: C. int()
+
+17. Dalam struktur if-elif-else, apa yang terjadi jika kondisi pertama (if) sudah terpenuhi (True)?
+
+Kunci Jawaban: C. Program menjalankan blok if dan mengabaikan kondisi berikutnya
+
+18. Agar prompt AI menghasilkan jawaban yang bisa diukur keberhasilannya, maka harus memenuhi unsur...
+
+Kunci Jawaban: C. Measurable
+
+19. Apa hasil dari print(15 % 4)?
+
+Jawaban Anda: A. 3
+
+20. Dalam AI Canvas Gemini, bagian 'Context' berfungsi untuk...
+
+Jawaban Anda: B. Memberikan latar belakang informasi agar AI lebih paham
+
+21. Operator != dalam Python digunakan untuk...
+
+Jawaban Anda: C. Mengecek apakah nilai tidak sama dengan
+
+22. Apa output dari operasi logika -5 > 7?
+
+Jawaban Anda: B. False
+
+23. Method perulangan yang berjalan selama kondisi bernilai True adalah...
+
+Kunci Jawaban: B. While
+
+24. Apa kepanjangan dari S dalam prinsip S.M.A.R.T pada prompting AI?
+
+Kunci Jawaban: B. Specific
+
+25. Simbol flowchart yang digunakan untuk menunjukkan proses keputusan (decision) seperti if adalah...
+
+Jawaban Anda: D. Belah ketupat (Diamond)
+
+26. Fungsi utama dari method input() pada Python adalah...
+
+Jawaban Anda: C. Mengambil data masukan dari pengguna
+
+27. Untuk menggabungkan dua string, kita menggunakan operator...
+
+Jawaban Anda: C. +
+
+28. Apa kegunaan dari indentasi (spasi menjorok ke dalam) pada Python?
+
+Jawaban Anda: C. Menandai blok kode (seperti isi dari if atau for)
+
+29. Apa fungsi dari elif dalam Python?
+
+Kunci Jawaban: B. Menambahkan kondisi tambahan jika kondisi if salah
+
+30. Tipe data untuk angka desimal (seperti 3.14) adalah...
+
+Kunci Jawaban: C. Float
+
+31. Simbol flowchart berbentuk jajar genjang digunakan untuk...
+
+Jawaban Anda: C. Input/Output data
+
+32. Unsur A dalam SMART prompting adalah singkatan dari Attainable, yang berarti...
+
+Jawaban Anda: C. Prompt harus memiliki batasan karakter
+
+Kunci Jawaban: B. Tugas yang diberikan harus realistis atau bisa dikerjakan oleh AI
+
+33. Jika Anda ingin menyimpan data teks seperti 'SMK Cyber Media', tipe data apa yang paling tepat digunakan?
+
+Kunci Jawaban: B. String
+
+34. Manakah di bawah ini yang merupakan tipe data untuk menyimpan angka bulat di Python?
+
+Kunci Jawaban: C. Integer
+
+35. Dalam prinsip SMART, 'Relevant' berarti prompt yang diberikan harus...
+
+Jawaban Anda: B. Sesuai dengan konteks atau tujuan yang ingin dicapai
+
+36. Output dari kode print(10 > 5) adalah...
+
+Jawaban Anda: A. True
+
+37. Perhatikan kode: x = "10"; y = 5; print(x * y). Outputnya adalah...
+
+Jawaban Anda: E. "50"
+
+Kunci Jawaban: B. 1010101010
+
+38. Bagaimana cara menulis komentar di Python?
+
+Jawaban Anda: A. // Ini komentar
+
+Kunci Jawaban: C. # Ini komentar
+
+39. Apa yang terjadi jika kita lupa menulis tanda titik dua (:) di akhir baris if?
+
+Jawaban Anda: C. Program akan melewati baris tersebut
+
+Kunci Jawaban: B. Program akan memberikan SyntaxError
+
+40. Mengapa hasil dari print("10" * 5) bukan 50?
+
+Jawaban Anda: C. Karena angka 5 harus dalam tanda kutip
+
+Kunci Jawaban: B. Karena "10" dianggap sebagai String, sehingga dilakukan repetisi
+
+41. Jika kita ingin membuat flowchart perulangan, tanda panah yang kembali ke proses sebelumnya disebut...
+
+Kunci Jawaban: C. Looping/Loopback
+
+42. Perhatikan kode: nilai = 75. Jika ada kondisi if nilai > 70: print("K") dan elif nilai > 80: print("L"), apa yang dicetak?
+
+Jawaban Anda: D. Tidak ada yang dicetak
+
+Kunci Jawaban: A. K
+
+43. Perhatikan: nilai = 85. Kondisi: if nilai >= 85: print("Lulus"). Hasilnya adalah...
+
+Kunci Jawaban: A. Lulus
+
+44. Manakah simbol yang benar untuk perulangan yang sudah diketahui jumlah pastinya di Python?
+
+Jawaban Anda: C. For
+
+45. Urutan langkah-langkah logis untuk menyelesaikan masalah disebut...
+
+Kunci Jawaban: B. Algoritma
