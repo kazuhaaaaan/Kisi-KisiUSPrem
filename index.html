@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KazuPremium | Verifikasi AI Otomatis</title>
+    <title>KazuPremium | Verifikasi AI & Latihan Soal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -62,6 +62,10 @@
             color: white;
             text-align: center;
         }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen selection:bg-blue-500/30">
@@ -75,7 +79,7 @@
                 <i data-lucide="brain-circuit" class="w-10 h-10 text-blue-400 animate-pulse"></i>
             </div>
         </div>
-        <h2 class="text-xl font-bold tracking-tight px-6 text-white">AI Sedang Meneliti Struk Lu...</h2>
+        <h2 id="loader-text" class="text-xl font-bold tracking-tight px-6 text-white">AI Sedang Meneliti Struk Lu...</h2>
         <p class="text-slate-400 text-sm mt-2 font-medium px-10">Sabar ya, proses verifikasi biasanya makan waktu 3-7 detik.</p>
     </div>
 
@@ -85,16 +89,18 @@
             <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20">K</div>
             <span class="font-bold tracking-tight text-lg">Kazu<span class="text-blue-600">Premium</span></span>
         </div>
-        <button id="themeToggle" class="p-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-all hover:scale-110 active:scale-95">
-            <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
-            <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-600"></i>
-        </button>
+        <div class="flex items-center gap-3">
+            <button id="themeToggle" class="p-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-all hover:scale-110 active:scale-95">
+                <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+                <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-600"></i>
+            </button>
+        </div>
     </nav>
 
-    <main class="max-w-2xl mx-auto px-6 pt-32 pb-24">
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-24">
         
         <!-- View: Login / Paywall -->
-        <section id="auth-view" class="reveal-anim">
+        <section id="auth-view" class="max-w-2xl mx-auto reveal-anim">
             <div class="text-center mb-10">
                 <h1 class="text-4xl font-extrabold tracking-tight mb-3">Akses Materi Premium</h1>
                 <p class="text-slate-500 dark:text-slate-400 font-medium italic px-4">"Upload bukti transfer yang jelas, AI bakal langsung kasih kodenya."</p>
@@ -172,47 +178,72 @@
             </div>
         </section>
 
-        <!-- View: Premium Content -->
+        <!-- View: Premium Content (GRID VIEW) -->
         <section id="premium-view" class="hidden-content reveal-anim">
-            <div class="glass p-8 rounded-[3rem] border-2 border-green-500/30 shadow-2xl relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-40 h-40 bg-green-500/10 rounded-full blur-3xl"></div>
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-6">
+                <div class="flex items-center gap-5">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-500/40 transform -rotate-3">
+                        <i data-lucide="crown" class="w-9 h-9"></i>
+                    </div>
+                    <div>
+                        <h2 id="welcome-txt" class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Halo, User!</h2>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="px-2 py-0.5 bg-green-500/10 text-green-600 text-[10px] font-black uppercase tracking-widest rounded-md border border-green-500/20">Member Premium</span>
+                            <span id="key-display-small" class="text-[10px] font-mono text-slate-400">KZU-XXXX</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="logout()" class="px-5 py-3 bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400 rounded-2xl font-bold text-sm flex items-center gap-2 transition-all hover:bg-red-100">
+                        <i data-lucide="log-out" class="w-4 h-4"></i> Keluar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <div class="flex items-center justify-between mb-8 relative z-10">
-                    <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 bg-green-500 text-white rounded-[1.5rem] flex items-center justify-center shadow-lg shadow-green-500/20">
-                            <i data-lucide="shield-check" class="w-8 h-8"></i>
-                        </div>
-                        <div>
-                            <h2 id="welcome-txt" class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">Halo, User!</h2>
-                            <p class="text-xs text-green-600 font-bold uppercase tracking-widest">Akses Premium Lu Udah Aktif</p>
+                <!-- Card 1: Kisi-Kisi (With Image) -->
+                <div class="glass p-6 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 group hover:border-blue-500/50 transition-all duration-500">
+                    <div class="relative h-48 mb-6 rounded-[1.5rem] overflow-hidden">
+                        <img src="./Foto/KisiPakIci.jpeg" 
+                             alt="Study Material" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full uppercase">PDF Materi</span>
                         </div>
                     </div>
-                    <button onclick="logout()" class="p-2 text-slate-400 hover:text-red-500 transition-colors" title="Keluar"><i data-lucide="log-out"></i></button>
+                    <h3 class="text-xl font-bold mb-2">Kisi-Kisi Utama 2026</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 line-clamp-2">Materi rangkuman paling lengkap yang sudah disusun oleh AI berdasarkan bank soal terbaru.</p>
+                    <button class="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-2xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-[0.98]">
+                        <i data-lucide="download" class="w-5 h-5"></i> Download Sekarang
+                    </button>
                 </div>
 
-                <div class="bg-blue-600/5 dark:bg-blue-500/5 p-6 rounded-3xl border border-blue-500/20 mb-8 relative z-10 text-center">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-blue-500">KODE AKSES UNIK LU (CATET!):</label>
-                    <div class="flex items-center justify-center gap-4 mt-1">
-                        <span id="key-display" class="text-2xl font-mono font-bold tracking-[0.2em] text-blue-700 dark:text-blue-400">KZU-XXXX-XXXX</span>
-                        <button onclick="copyKey()" id="copy-btn" class="p-2.5 bg-white dark:bg-slate-800 rounded-xl shadow-sm active:scale-90 border border-slate-200 dark:border-slate-700">
-                            <i data-lucide="copy" class="w-4 h-4 text-blue-500"></i>
-                        </button>
+                <!-- Card 2: Latihan Soal Gemini (Link Button) -->
+                <div class="glass p-6 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 group hover:border-purple-500/50 transition-all duration-500">
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-[1.25rem] flex items-center justify-center mb-6 shadow-inner group-hover:rotate-12 transition-transform">
+                        <i data-lucide="brain" class="w-8 h-8"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Latihan Soal Gemini AI</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Gunakan Gemini AI untuk bantu lu bikin soal latihan dan diskusi materi secara langsung.</p>
+                    <a href="https://gemini.google.com/share/3bee3b761ba2" target="_blank" class="w-full py-4 bg-purple-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-purple-700 transition-all active:scale-[0.98] shadow-lg shadow-purple-500/20">
+                        <i data-lucide="external-link" class="w-5 h-5"></i> Buka Latihan Soal
+                    </a>
                 </div>
 
-                <!-- Materi Premium -->
-                <div class="space-y-6 relative z-10">
-                    <div class="p-8 text-center rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm">
-                        <div class="w-16 h-16 mx-auto bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
-                            <i data-lucide="file-text" class="w-8 h-8 text-slate-400"></i>
-                        </div>
-                        <h4 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Kisi-Kisi Utama.pdf</h4>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Materi premium eksklusif. Klik tombol di bawah untuk mendownload file asli.</p>
-                        <button class="w-full py-4 bg-slate-950 dark:bg-white text-white dark:text-slate-950 rounded-2xl font-bold shadow-xl flex items-center justify-center gap-2 hover:opacity-90 transition-all">
-                            <i data-lucide="download" class="w-5 h-5"></i> Download PDF
-                        </button>
-                    </div>
+            </div>
+
+            <!-- Footer Key Info -->
+            <div class="mt-8 p-6 bg-blue-600/5 dark:bg-blue-500/5 rounded-3xl border border-blue-500/10 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="key" class="w-5 h-5 text-blue-500"></i>
+                    <p class="text-sm font-medium">Akses ID: <span id="key-display" class="font-mono font-bold ml-1">KZU-XXXX</span></p>
                 </div>
+                <button onclick="copyKey()" id="copy-btn" class="flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                    <i data-lucide="copy" class="w-4 h-4"></i> Salin Kode Akses
+                </button>
             </div>
         </section>
     </main>
@@ -224,7 +255,7 @@
             <h3 class="font-extrabold text-2xl mb-2 tracking-tight text-slate-900 dark:text-white">QRIS Pembayaran</h3>
             <p class="text-xs text-slate-500 mb-6">Minimal Transfer: <b>Rp 15.000</b></p>
             <div class="bg-white p-4 rounded-[2rem] mb-6 shadow-inner border border-slate-100">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=KazuDevPremiumPayment" alt="QRIS KazuDev" class="w-full h-auto rounded-xl">
+                <img src="./Foto/Qris.jpeg" alt="QRIS KazuDev" class="w-full h-auto rounded-xl">
             </div>
             <p class="text-[10px] text-slate-400 font-medium italic mb-6">"Screenshot bukti pembayaran lu setelah berhasil transfer"</p>
             <button onclick="contactAdmin()" class="w-full py-4 bg-green-500 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-green-600 transition-all active:scale-95 shadow-lg shadow-green-500/20">
@@ -233,7 +264,7 @@
         </div>
     </div>
 
-    <!-- Modal: AI Error / Admin Contact -->
+    <!-- Modal: AI Error -->
     <div id="modal-error" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-slate-950/90 backdrop-blur-md">
         <div class="bg-white dark:bg-slate-900 p-8 rounded-[3rem] max-w-sm w-full text-center relative reveal-anim shadow-2xl border border-red-500/30">
             <button onclick="toggleModal('modal-error', false)" class="absolute top-6 right-6 text-slate-400 hover:text-red-500 transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
@@ -242,7 +273,6 @@
             </div>
             <h3 class="font-extrabold text-2xl mb-2 tracking-tight text-slate-900 dark:text-white">Verifikasi Gagal!</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 px-2">AI kami tidak dapat mengenali struk tersebut. Pastikan foto jelas, terang, dan tidak terpotong.</p>
-            
             <div class="space-y-3">
                 <button onclick="toggleModal('modal-error', false)" class="w-full py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-2xl font-bold transition-all hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95">
                     Coba Upload Lagi
@@ -256,7 +286,7 @@
 
     <script>
         // --- KONFIGURASI CORE ---
-        const apiKey = ""; 
+        const apiKey = ""; // KOSONGKAN, AKAN TERISI OTOMATIS OLEH LINGKUNGAN
         const SALT = "KAZU_AI_SECURE_2026";
         const STORAGE_AUTH_KEY = "kazudev_premium_active";
         const STORAGE_NAME_KEY = "kazudev_premium_username";
@@ -288,7 +318,7 @@
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(template)}`, '_blank');
         }
 
-        // --- VERIFIKASI AI (IMPROVED PROMPT) ---
+        // --- VERIFIKASI AI ---
         async function startAIVerification() {
             const name = document.getElementById('user-name').value.trim();
             const fileInput = document.getElementById('receipt-input');
@@ -298,18 +328,14 @@
             if (!file) return showStatus("Upload struknya bro!", "error");
 
             const loader = document.getElementById('ai-loader');
+            document.getElementById('loader-text').innerText = "AI Sedang Meneliti Struk Lu...";
             loader.style.display = 'flex';
 
             try {
                 const base64Data = await fileToBase64(file);
                 const imageData = base64Data.split(',')[1];
 
-                const systemPrompt = `You are a payment verification expert. Analyze the provided image.
-                Is it a legitimate bank transfer or e-wallet payment receipt?
-                Check for these keywords in Indonesian: 'Berhasil', 'Status', 'Selesai', 'Terbayar', 'Sukses', 'Lunas', 'Transfer', 'Dana', 'Gopay', 'OVO', 'ShopeePay'.
-                Even if the image quality is standard or it's a screenshot of a transaction detail, as long as it looks like a real proof of payment, respond with 'VALID'.
-                If it is a completely unrelated image (like a person, a selfie, a meme, or a blank photo), respond with 'INVALID'.
-                Respond ONLY with 'VALID' or 'INVALID'. No explanations.`;
+                const systemPrompt = `Analyze the image. Respond ONLY 'VALID' if it is a transaction proof (bank transfer/Gopay/OVO/DANA receipt) or 'INVALID' if not. Check keywords: Berhasil, Sukses, Selesai, Transfer.`;
 
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
                     method: 'POST',
@@ -334,16 +360,14 @@
                 } else {
                     throw new Error("AI dibilang invalid");
                 }
-
             } catch (err) {
-                console.error(err);
-                toggleModal('modal-error', true); // Tampilkan popup error
+                toggleModal('modal-error', true);
             } finally {
                 loader.style.display = 'none';
             }
         }
 
-        // --- LOGIKA KODE ---
+        // --- LOGIKA KODE & UI ---
         function handleManualUnlock() {
             const name = document.getElementById('user-name').value.trim();
             const enteredKey = document.getElementById('manual-key').value.trim().toUpperCase();
@@ -372,11 +396,12 @@
             document.getElementById('auth-view').classList.add('hidden-content');
             document.getElementById('premium-view').classList.remove('hidden-content');
             document.getElementById('welcome-txt').innerText = `Halo, ${name}!`;
-            document.getElementById('key-display').innerText = generateKey(name);
+            const key = generateKey(name);
+            document.getElementById('key-display').innerText = key;
+            document.getElementById('key-display-small').innerText = key.substring(0, 8);
             lucide.createIcons();
         }
 
-        // --- HELPERS ---
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -394,6 +419,7 @@
             setTimeout(() => {
                 btn.innerHTML = original;
                 btn.classList.replace(type === 'error' ? 'bg-red-500' : 'bg-green-600', 'bg-blue-600');
+                lucide.createIcons();
             }, 3000);
         }
 
@@ -418,19 +444,13 @@
 
         function copyKey() {
             const text = document.getElementById('key-display').innerText;
-            const temp = document.createElement('input');
-            temp.value = text;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
-            const btn = document.getElementById('copy-btn');
-            btn.innerHTML = '<i data-lucide="check" class="w-4 h-4 text-green-500"></i>';
-            lucide.createIcons();
-            setTimeout(() => {
-                btn.innerHTML = '<i data-lucide="copy" class="w-4 h-4 text-blue-500"></i>';
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copy-btn');
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i> Berhasil Disalin!';
                 lucide.createIcons();
-            }, 2000);
+                setTimeout(() => { btn.innerHTML = original; lucide.createIcons(); }, 2000);
+            });
         }
 
         function logout() {
@@ -444,6 +464,8 @@
             const modal = document.getElementById(id);
             modal.classList.toggle('hidden', !show);
             modal.classList.toggle('flex', show);
+            if(show) document.body.style.overflow = 'hidden';
+            else document.body.style.overflow = 'auto';
         }
 
         function setupTheme() {
